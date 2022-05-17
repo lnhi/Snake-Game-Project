@@ -14,15 +14,15 @@ Gallery::~Gallery()
 
 void Gallery::loadGamePictures()
 {
-    pictures.push_back(painter.loadTexture("apple.png"));
-    pictures.push_back(painter.loadTexture("snake_vertical.png"));
-    pictures.push_back(painter.loadTexture("snake_horizontal.png"));
-    pictures.push_back(painter.loadTexture("snake_head.png"));
-    pictures.push_back(painter.loadTexture("snake_corner1.png"));
-    pictures.push_back(painter.loadTexture("snake_corner2.png"));
-    pictures.push_back(painter.loadTexture("snake_corner3.png"));
-    pictures.push_back(painter.loadTexture("snake_corner4.png"));
-    pictures.push_back(painter.loadTexture("snake_stub_hor.png"));
-    pictures.push_back(painter.loadTexture("snake_stub_ver.png"));
-    pictures.push_back(painter.loadTexture("box.png"));
+    pictures.push_back(painter.loadTexture("Texture/fruit.png"));
+    pictures.push_back(painter.loadTexture("Texture/snake_vertical.png"));
+    pictures.push_back(painter.loadTexture("Texture/snake_horizontal.png"));
+    pictures.push_back(painter.loadTexture("Texture/snake_head.png"));
+    pictures.push_back(painter.loadTexture("Texture/snake_corner1.png"));
+    pictures.push_back(painter.loadTexture("Texture/snake_corner2.png"));
+    pictures.push_back(painter.loadTexture("Texture/snake_corner3.png"));
+    pictures.push_back(painter.loadTexture("Texture/snake_corner4.png"));
+    pictures.push_back(painter.loadTexture("Texture/snake_stub_hor.png"));
+    pictures.push_back(painter.loadTexture("Texture/snake_stub_ver.png"));
+    pictures.push_back(painter.loadTexture("Texture/box.png"));
 }

@@ -18,7 +18,7 @@ void Text::initText(TTF_Font*& fontText)
 	if (TTF_Init() == -10) {
 		cout << 1;
 	}
-	fontText = TTF_OpenFont("font.ttf", 20);
+	fontText = TTF_OpenFont("Texture/font.ttf", 20);
 	if (fontText == NULL) {
 		cout << 1;
 	}

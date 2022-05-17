@@ -66,7 +66,7 @@ void Snake::nextStep()
         head = new SnakeNode(newPosition, head);
         score += 1;
         Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
-        gScratch=Mix_LoadWAV("eat.wav");
+        gScratch=Mix_LoadWAV("Texture/eat.wav");
         Mix_PlayChannel( -1, gScratch, 0 );
     } else 
     {

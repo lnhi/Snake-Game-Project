@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
    
     auto start = CLOCK_NOW();
 
-    SDL_Texture* newTexture =loadTexture("startgame.png",renderer);
+    SDL_Texture* newTexture =loadTexture("Texture/startgame.png",renderer);
     renderTexture(newTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_RenderPresent(painter.getRenderer());
 
@@ -119,7 +119,7 @@ int main(int argc, char* argv[])
     SDL_RenderPresent(painter.getRenderer());
 
     Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
-    gMusic=Mix_LoadMUS("bksound.wav");
+    gMusic=Mix_LoadMUS("Texture/bksound.wav");
     Mix_PlayMusic(gMusic,-1);
 
     int choice=-1;
@@ -165,7 +165,7 @@ int main(int argc, char* argv[])
     if(choice==2)
     {
     SDL_Event e;
-    SDL_Texture* newTexture =loadTexture("bk_gr.png",renderer);
+    SDL_Texture* newTexture =loadTexture("Texture/bk_gr.png",renderer);
     renderTexture(newTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_RenderPresent(painter.getRenderer());
     TTF_Font* fontText = NULL;
@@ -233,8 +233,6 @@ void initSDL(SDL_Window* &window, SDL_Renderer* &renderer)
  
 void quitSDL(SDL_Window* window, SDL_Renderer* renderer)
 {
-    //Mix_FreeChunk(gScratch);
-    //gScratch=NULL;
     Mix_FreeMusic(gMusic);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
@@ -389,7 +387,7 @@ void renderGamePlay(Painter& painter, const PlayGround& playGround)
     vector<Position> snakePositions = playGround.getSnakePositions();
     
     drawSnake(painter, left, top, snakePositions);
-    // SDL_RenderPresent(painter.getRenderer());
+    
 }
 void renderGameOver(Painter& painter, const PlayGround& playGround, string lastScore)
 {
@@ -412,8 +410,6 @@ void renderGameOver(Painter& painter, const PlayGround& playGround, string lastS
              (e.type == SDL_KEYDOWN || e.type == SDL_QUIT) )
                 break;
     }  
-    // SDL_RenderCopy(renderer, newTexture, NULL, NULL);
-   // SDL_Delay(100);
 }
  
 UserInput interpretEvent(SDL_Event e)

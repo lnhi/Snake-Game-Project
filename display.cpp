@@ -2,7 +2,6 @@
 
 void draw_Bg(SDL_Renderer* renderer, int SCREEN_WIDTH, int SCREEN_HEIGHT )
 {
-    //xoa man hinh
     SDL_RenderClear(renderer);
     SDL_Texture *bg1 = loadTexture("bg1.png", renderer);
     renderTexture(bg1, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -19,8 +18,8 @@ void endGame(SDL_Renderer* renderer)
     SDL_RenderPresent(renderer);
 
 }
-int returnn(SDL_Renderer* renderer)  // return 1: home
-{                                   // return 2: return
+int returnn(SDL_Renderer* renderer) 
+{                                   
     int choice;
     SDL_Event e;
     SDL_Rect filled_rect;
