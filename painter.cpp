@@ -18,6 +18,7 @@ Painter::Painter(SDL_Window* window, SDL_Renderer* renderer_)
     setAngle(0);
     setColor(WHITE_COLOR);
     clearWithBgColor(BLUE_COLOR);
+    
 }
 
 void Painter::setPosition(float x, float y)

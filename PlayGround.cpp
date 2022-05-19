@@ -19,6 +19,7 @@ PlayGround::~PlayGround()
    
 }
 
+
 void PlayGround::changeCellState(Position pos, CellType type)
 {
     assert(pos.isInsideBox(0,0,getWidth(),getHeight()));
