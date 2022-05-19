@@ -67,15 +67,10 @@ public:
       }
 
     void setRandomColor();
-
     void createCircle(float radius);
     void createSquare(float size);
     void createParallelogram(float size);
 
     SDL_Texture* loadTexture( std::string path );
     bool createImage( SDL_Texture* texture, SDL_Rect* srcrect = nullptr, SDL_Rect* dstrect = nullptr );
-    //  bool init();
-    //  void close();
-   //   SDL_Surface* loadSurface( std::string path );
-    //  bool loadMedia();
 };

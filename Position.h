@@ -19,13 +19,14 @@ struct Position
         return Position(x+dx[d],y+dy[d]);
     }
 
-    bool isInsideBox(int left, int top, int width, int height) 
-    {
+    bool isInsideBox(int left, int top, int width, int height) {
+    
         return x >= left && x < left+width && y >= top && y < top+height;
     }
-    bool isInside(int left, int top, int width, int height) 
+    bool isInside() 
     {
-       return x >= 30 && x < 60 && y >= 30 && y < 60;
+        if((x*30>=120&&x*30<=209&&y*30>=380&&y*30<=485)||(x*30>=682&&x*30<=769&&y*30>=73&&y*30<=176))
+            return false;
     }
     bool operator==(Position p) {
         return x == p.x && y == p.y;

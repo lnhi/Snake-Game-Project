@@ -93,7 +93,8 @@ bool Snake::checkPosition(Position pos)
 {
     if ( !pos.isInsideBox(0,0,playGround->getWidth(),playGround->getHeight()))
         return false;
-    
+    if(pos.isInside()==false)
+        return false;
     for (SnakeNode* p = head; p->next != nullptr; p = p->next)
         if (p->position == pos) return false;
 

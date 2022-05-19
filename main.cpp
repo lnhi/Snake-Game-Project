@@ -13,9 +13,7 @@
 #include "painter.h"
 #include "PlayGround.h"
 #include "Gallery.h"
-#include"Text.h"
-
-//#include "splash.h"
+#include "Text.h"
 #include "display.h"
 #include "SDL_utils.h"
 
@@ -32,7 +30,7 @@ const int GROUND_WIDTH = 30;
 const int GROUND_HEIGHT = 20;
 const int CELL_SIZE = 30;
 
-const double STEP_DELAY = 0.1;
+double STEP_DELAY = 0.15;
 #define CLOCK_NOW chrono::system_clock::now
 typedef chrono::duration<double> ElapsedTime;
 
@@ -50,50 +48,7 @@ UserInput interpretEvent(SDL_Event e);
 void updateRankingTable(const PlayGround& playGround);
  
 Gallery* gallery = nullptr;
-/*
-bool loadFromREnderer(string textureText, SDL_Color textColor)
-{
-  SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, textureText,c_str(), textColor);
-  if(textSurface==NULL)
-  {
-    printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
-  }
-  else 
-  {
-      newTexture=SDL_CreateTextureFromSurface(renderer, textSurface);
-      if(newTexture==NULL)
-      {
-          printf("unable to create textture from rendered text! SDL Error: %s\n", SDL_GetError());
-      }
-      SDL_FreeSurface(textSurface);
-  }
-  return newTexture!=NULL;
-}
-void free()
-{}
-void setColor(Uint8 red, Uint8 green, Uint8 blue)
-{
-    SDL_SetTextureColorMod(newTextture, red, green, blue);
-}
-void setBlenMode(SDL_BlendMode blending)
-{
-    SDL_SetTextureBlendMode(newTexture, blending);
-}
-void setAlpha(Uint 8 alpha)
-{
-    SDL_SetTextureAlphaMod(newTexture, alpha);
-}
-void render(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE)
-{
-    SDL_Rect renderQuad={x, y, SCREEN_WIDTH, SCREEN_HEIGHT};
-    if(clip!=NULL)
-    {
-        renderQuad.w = clip ->w;
-        renderQuad.h = clip ->h;
-    }
 
-    SDL_RenderCopyEx(renderder, newTexure, clip, &renderQuad, angle, center, flip);
-}*/
 int main(int argc, char* argv[])
 {
     srand(time(0));
@@ -102,26 +57,26 @@ int main(int argc, char* argv[])
     Painter painter(window, renderer);
     gallery = new Gallery(painter);
     PlayGround playGround(GROUND_WIDTH, GROUND_HEIGHT);
-   // renderSplashScreen(painter, playGround);
-   
     auto start = CLOCK_NOW();
-
+    Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
+    gMusic=Mix_LoadMUS("Texture/bksound.wav");
+    Mix_Chunk* click = NULL;
+    click = Mix_LoadWAV("Texture/click.wav");
+    Mix_PlayMusic(gMusic,-1);
+homee:
+    SDL_RenderClear(renderer);
     SDL_Texture* newTexture =loadTexture("Texture/startgame.png",renderer);
     renderTexture(newTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_RenderPresent(painter.getRenderer());
 
-    SDL_Texture* helpTexture =loadTexture("Texture/help_button.png",renderer);
+     SDL_Texture* helpTexture =loadTexture("Texture/help_button.png",renderer);
     renderTexture(helpTexture, renderer, 48, 430 , 165, 75);
     SDL_RenderPresent(painter.getRenderer());
 
     SDL_Texture* startTexture = loadTexture("Texture/play_button.png",renderer);
     renderTexture(startTexture, renderer,716, 430, 160, 75);
     SDL_RenderPresent(painter.getRenderer());
-
-    Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 );
-    gMusic=Mix_LoadMUS("Texture/bksound.wav");
-    Mix_PlayMusic(gMusic,-1);
-
+ 
     int choice=-1;
     SDL_Event e1;
     SDL_Rect filled_rect;
@@ -145,29 +100,46 @@ int main(int argc, char* argv[])
                 choice=2;
                 break;
             }
-
        }
     }
-    cout<<choice;
+    cout<<playGround.getHeight()<<endl;
     if(choice==1)
     {
+    Mix_PlayChannel (-1, click, 0);
     SDL_Texture* newTexture = loadTexture("Texture/help.png",renderer);
     SDL_RenderCopy(renderer, newTexture, NULL, NULL);
     SDL_RenderPresent(painter.getRenderer());
     SDL_Event e2;
-    while (true) 
+    int choice2;
+            while (true) {
+            SDL_Delay(10);
+            if ( SDL_WaitEvent(&e2) == 0) continue;
+            if (e2.type == SDL_QUIT) break;
+            if (e2.type == SDL_KEYDOWN && e2.key.keysym.sym == SDLK_ESCAPE) break;
+            if (e2.type == SDL_MOUSEBUTTONDOWN) {
+                filled_rect.x = e2.button.x; // Lấy hoành độ x của chuột
+                filled_rect.y = e2.button.y; // Lấy tung độ y của chuột
+                if (filled_rect.x >= 140 && filled_rect.y >= 35 && filled_rect.x <= 177 && filled_rect.y <= 125)
+                {
+                        choice2 = 1;
+                        break;
+                }
+                }
+            } 
+    if(choice2==1)
     {
-        if ( SDL_WaitEvent(&e2) != 0 &&
-             (e2.type == SDL_KEYDOWN || e2.type == SDL_QUIT) )
-                break;
-    }  
+     Mix_PlayChannel (-1, click, 0);
+     goto homee;
+    }
     }
     if(choice==2)
     {
+    Mix_PlayChannel (-1, click, 0);
     SDL_Event e;
-    SDL_Texture* newTexture =loadTexture("Texture/bk_gr.png",renderer);
+    SDL_Texture* newTexture =loadTexture("Texture/bk_gr1.png",renderer);
     renderTexture(newTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_RenderPresent(painter.getRenderer());
+
     TTF_Font* fontText = NULL;
     Text score;
     score.initText(fontText);
@@ -183,20 +155,23 @@ int main(int argc, char* argv[])
         }
         auto end = CLOCK_NOW();
         ElapsedTime elapsed = end-start;
+        int t=playGround.getScore();
+        STEP_DELAY-=0.0000001;
+        //cout<<STEP_DELAY<<endl;
         if (elapsed.count() > STEP_DELAY)
         {
             playGround.nextStep();
             renderGamePlay(painter, playGround);
-            score.setText("Score: " + playGround.getScore());
+            score.setText("Score: " + to_string(playGround.getScore()));
             score.creatText(fontText, painter.getRenderer());
             SDL_RenderPresent(painter.getRenderer());
             start = end;
         }
         SDL_Delay(1);
     }
-    renderGameOver(painter, playGround, playGround.getScore());
+    renderGameOver(painter, playGround, to_string(playGround.getScore()));
     updateRankingTable(playGround);
-    
+
     delete gallery;
     quitSDL(window, renderer);
     }
@@ -240,45 +215,6 @@ void quitSDL(SDL_Window* window, SDL_Renderer* renderer)
     Mix_Quit();
     SDL_Quit();
 }
-/*bool loadMedia()
-{
-    //Loading success flag
-    bool success = true;
-    //Load PNG surface
-    gPNGSurface = loadSurface( "bk_gr.png" );
-    if( gPNGSurface == NULL )
-    {
-        printf( "Failed to load PNG image!\n" );
-        success = false;
-    }
-    return success;
-}
-SDL_Surface* loadSurface(string path )
-{
-    //The final optimized image
-    SDL_Surface* optimizedSurface = NULL;
- 
-    //Load image at specified path
-    SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-    if( loadedSurface == NULL )
-    {
-        printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
-    }
-    else
-    {
-        //Convert surface to screen format
-        optimizedSurface = SDL_ConvertSurface( loadedSurface, gScreenSurface->format, 0 );
-        if( optimizedSurface == NULL )
-        {
-            printf( "Unable to optimize image %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-        }
- 
-        //Get rid of old loaded surface
-        SDL_FreeSurface( loadedSurface );
-    }
- 
-    return optimizedSurface;
-}*/
 void waitUntilKeyPressed()
 {
     SDL_Event e;
@@ -295,7 +231,7 @@ float generateRandomNumber()
     return (float) rand() / RAND_MAX;
 }
 
-void renderSplashScreen(Painter& painter, const PlayGround& playGround)
+/*void renderSplashScreen(Painter& painter, const PlayGround& playGround)
 {
     SDL_Texture* newTexture = painter.loadTexture("startgame.png");
     SDL_RenderCopy(renderer, newTexture, NULL, NULL);
@@ -308,10 +244,10 @@ void renderSplashScreen(Painter& painter, const PlayGround& playGround)
                 break;
     }  
 }
- 
+ */
 void drawCherry(Painter& painter, int left, int top)
 {
-    SDL_Rect dst = { left+5, top+5, CELL_SIZE+5, CELL_SIZE+5};
+    SDL_Rect dst = { left+5, top+5, CELL_SIZE, CELL_SIZE};
     painter.createImage(gallery->getImage(PIC_CHERRY), NULL, &dst);
 }
 void drawBox(Painter& painter, int left, int top)
@@ -323,7 +259,7 @@ void drawSnake(Painter& painter, int left, int top, vector<Position> pos)
 {
     for (size_t i = 0; i < pos.size(); i++)
     {
-        SDL_Rect dst = { left+pos[i].x*CELL_SIZE+1, top+pos[i].y*CELL_SIZE+1, CELL_SIZE+5, CELL_SIZE+5};
+        SDL_Rect dst = { left+pos[i].x*CELL_SIZE+1, top+pos[i].y*CELL_SIZE+1, CELL_SIZE+2, CELL_SIZE+2};
         SDL_Texture* texture = NULL;
         if (i > 0)
         {
@@ -394,13 +330,13 @@ void renderGameOver(Painter& painter, const PlayGround& playGround, string lastS
     TTF_Font* fontText = NULL;
     Text score;
     score.initText(fontText);
-    score.setSize(150,50);
-    score.setPos(380, 438);
-    score.setText("Your Score: " + lastScore);
+    score.setSize(35,50);
+    score.setPos(120, 485);
+    score.setText(lastScore);
     
-    SDL_Texture* newTexture = painter.loadTexture("gameover.png");
+    SDL_Texture* newTexture = painter.loadTexture("Texture/gameover.png");
     SDL_RenderCopy(renderer, newTexture, NULL, NULL);
-    
+
     score.creatText(fontText, painter.getRenderer());
     SDL_RenderPresent(painter.getRenderer());
     SDL_Event e;
@@ -410,8 +346,27 @@ void renderGameOver(Painter& painter, const PlayGround& playGround, string lastS
              (e.type == SDL_KEYDOWN || e.type == SDL_QUIT) )
                 break;
     }  
+    /*SDL_Event e;
+    int choice=-1;
+            while (true) {
+            SDL_Delay(10);
+            if ( SDL_WaitEvent(&e3) == 0) continue;
+            if (e3.type == SDL_QUIT) break;
+            if (e3.type == SDL_KEYDOWN && e2.key.keysym.sym == SDLK_ESCAPE) break;
+            if (e3.type == SDL_MOUSEBUTTONDOWN) {
+                filled_rect.x = e3.button.x; // Lấy hoành độ x của chuột
+                filled_rect.y = e3.button.y; // Lấy tung độ y của chuột
+                if (filled_rect.x >= 140 && filled_rect.y >= 35 && filled_rect.x <= 177 && filled_rect.y <= 125)
+                {
+                        choice= 1;
+                        break;
+                }
+                }
+            } 
+    if(choice==1)
+    goto homee;*/
 }
- 
+
 UserInput interpretEvent(SDL_Event e)
 {
     if (e.type == SDL_KEYUP)

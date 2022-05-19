@@ -1,5 +1,5 @@
 #include "Gallery.h"
-
+#include "SDL_utils.h"
 Gallery::Gallery(Painter& painter_)
     : painter(painter_)
 {

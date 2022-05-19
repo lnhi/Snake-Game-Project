@@ -36,7 +36,7 @@ public:
     const vector<vector<CellType> >& getSquares() const { return squares; }
     CellType getCellState(Position p) const { return squares[p.y][p.x]; }
     void setGameStatus(GameStatus status);
-    string getScore(){return to_string(snake.getScore());}
+    int getScore(){return snake.getScore();}
 
     vector<Position> getSnakePositions() const;
 };

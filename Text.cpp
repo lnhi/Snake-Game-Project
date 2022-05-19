@@ -4,8 +4,8 @@ Text::Text()
 {
 	setColor(1);
     rect.x = 10;
-    rect.y = 10;
-    rect.w = 70;
+    rect.y = 2;
+    rect.w = 90;
     rect.h = 30;
 }
 
@@ -18,7 +18,7 @@ void Text::initText(TTF_Font*& fontText)
 	if (TTF_Init() == -10) {
 		cout << 1;
 	}
-	fontText = TTF_OpenFont("Texture/font.ttf", 20);
+	fontText = TTF_OpenFont("Texture/font_text.ttf", 20);
 	if (fontText == NULL) {
 		cout << 1;
 	}

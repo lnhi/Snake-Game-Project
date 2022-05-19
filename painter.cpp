@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "painter.h"
+#include "SDL_utils.h"
 
 using namespace std;
 const int SCREEN_WIDTH = 900;
@@ -123,6 +124,7 @@ SDL_Texture* Painter::loadTexture( string path )
 {
     SDL_Texture* newTexture = NULL;
     SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
+    loadedSurface = deleteBackGroundImage(loadedSurface, 166, 211, 136);
     if ( loadedSurface == NULL )
         cout << "Unable to load image " << path << " SDL_image Error: " << IMG_GetError() << endl;
     else {
@@ -140,89 +142,4 @@ bool Painter::createImage( SDL_Texture* texture, SDL_Rect* srcrect, SDL_Rect* ds
     SDL_RenderCopy( renderer, texture, srcrect, dstrect );
     return true;
 }
-/*bool init()
-{
-	bool success = true;
-	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
-	{
-		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
-		success = false;
-	}
-	else
-	{
-		gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-		if( gWindow == NULL )
-		{
-			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
-			success = false;
-		}
-		else
-		{
-			//Initialize PNG loading
-			int imgFlags = IMG_INIT_PNG;
-			if( !( IMG_Init( imgFlags ) & imgFlags ) )
-			{
-				printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
-				success = false;
-			}
-			else
-			{
-				//Get window surface
-				gScreenSurface = SDL_GetWindowSurface( gWindow );
-			}
-		}
-	}
 
-	return success;
-}
-
-void close()
-{
-	//Free loaded image
-	SDL_FreeSurface( gPNGSurface );
-	gPNGSurface = NULL;
-
-	//Destroy window
-	SDL_DestroyWindow( gWindow );
-	gWindow = NULL;
-
-	//Quit SDL subsystems
-	IMG_Quit();
-	SDL_Quit();
-}
-
-SDL_Surface* loadSurface( std::string path )
-{
-    gPNGSurface = loadSurface( "bk_gr.png" );
-    SDL_Surface* optimizedSurface = NULL;
-    SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-    if( loadedSurface == NULL )
-    {
-        printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
-    }
-    else
-    {
-        optimizedSurface = SDL_ConvertSurface( loadedSurface, gScreenSurface->format, 0 );
-        if( optimizedSurface == NULL )
-        {
-            printf( "Unable to optimize image %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
-        }
-
-        SDL_FreeSurface( loadedSurface );
-    }
-    return optimizedSurface;
-}
-bool loadMedia()
-{
-	bool success = true;
-
-
-	gPNGSurface = loadSurface( "bk_gr.png" );
-	if( gPNGSurface == NULL )
-	{
-		printf( "Failed to load PNG image!\n" );
-		success = false;
-	}
-
-	return success;
-}*/
