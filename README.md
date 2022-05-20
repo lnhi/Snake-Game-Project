@@ -19,4 +19,15 @@ Game rắn cổ điển được code bằng c++, sử dụng thư viện SDL2.
   - Snake Game: di chuyển rắn để ăn quả mà không đâm vào tường và thân mình.  
 ## Chức năng
   - Chức năng di chuyển để ăn quả rồi cộng điểm: [link video demo](https://courses.uet.vnu.edu.vn/)
-  
+  - Chức năng rắn đâm vào tường chết: [link video demo](https://courses.uet.vnu.edu.vn/)
+  - Chức năng rắn đâm vào chướng ngại vật chết: [link video demo](https://courses.uet.vnu.edu.vn/)
+## Các kỹ thuật
+  - Mảng: sử dụng mảng tĩnh và mảng động
+  - Con trỏ
+  - Class
+  - Danh sách liên kết
+  - Đồ hoạ
+      - Âm thanh
+      - Hình ảnh
+## Kết luận 
+ 
