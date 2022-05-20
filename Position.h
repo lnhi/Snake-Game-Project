@@ -25,8 +25,9 @@ struct Position
     }
     bool isInside() 
     {
-        if((x*30>=120&&x*30<=209&&y*30>=380&&y*30<=485)||(x*30>=682&&x*30<=769&&y*30>=73&&y*30<=176))
+        if((x*30>=120&&x*30<=209&&y*30>=380&&y*30<=475)||(x*30>=682&&x*30<=769&&y*30>=73&&y*30<=176))
             return false;
+    return true;
     }
     bool operator==(Position p) {
         return x == p.x && y == p.y;
