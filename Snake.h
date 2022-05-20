@@ -43,7 +43,7 @@ class Snake
 public:
     Snake(PlayGround* playGround);
     ~Snake();
-
+    //void initSnake();
     void processUserInput(UserInput input);
     void nextStep();
     bool checkPosition(Position pos);
