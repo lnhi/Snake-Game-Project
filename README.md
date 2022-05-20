@@ -22,12 +22,12 @@ Game rắn cổ điển được code bằng c++, sử dụng thư viện SDL2.
   - Chức năng rắn đâm vào tường chết: [link video demo](https://courses.uet.vnu.edu.vn/)
   - Chức năng rắn đâm vào chướng ngại vật chết: [link video demo](https://courses.uet.vnu.edu.vn/)
 ## Các kỹ thuật
-  - Mảng: sử dụng mảng tĩnh và mảng động
+  - Mảng: sử dụng mảng 1 chiều, mảng 2 chiều tĩnh và động
   - Con trỏ
   - Class
   - Danh sách liên kết
   - Đồ hoạ
-      - Âm thanh
-      - Hình ảnh
+      - Âm thanh: sử dụng thư viện SDL_mixer
+      - Hình ảnh: sử dụng thư viện SDL_image, SDL_ttf
 ## Kết luận 
  
