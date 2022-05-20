@@ -18,7 +18,17 @@ PlayGround::~PlayGround()
 {
    
 }
-
+/*void PlayGround::initPlayGround()
+{
+    status=GAME_RUNNING;
+    for(int i=1;i<=20;i++)
+      for(int j=1;j<=30;j++)
+      squares[i][j]=CELL_EMPTY;
+     //score(0)
+{
+    addCherry();
+}
+}*/
 void PlayGround::changeCellState(Position pos, CellType type)
 {
     assert(pos.isInsideBox(0,0,getWidth(),getHeight()));
@@ -39,7 +49,7 @@ void PlayGround::addCherry()
 {
     vector<int>v;
     vector<int>u;
-      for(int i=2; i<=30; i++)
+      for(int i=5; i<=30; i++)
         if((i<=3||i>=7)&&(i<=21||i>=26))
             v.push_back(i);
     for(int i=2; i<=20; i++)
