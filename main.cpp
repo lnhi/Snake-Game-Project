@@ -1,10 +1,10 @@
 #include <iostream>
-#include <cstdlib>
-#include <stdio.h>
-#include <string>
 #include <ctime>
 #include <cmath>
 #include <chrono>
+#include <cstdlib>
+#include <stdio.h>
+#include <string>
 #include <SDL2/SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -14,7 +14,6 @@
 #include "PlayGround.h"
 #include "Gallery.h"
 #include "Text.h"
-#include "display.h"
 #include "SDL_utils.h"
 
 using namespace std;
@@ -63,13 +62,13 @@ homee:
     renderTexture(newTexture, renderer, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_RenderPresent(painter.getRenderer());
 
-     SDL_Texture* helpTexture =loadTexture("Texture/help_button.png",renderer);
+    /* SDL_Texture* helpTexture =loadTexture("Texture/help_button.png",renderer);
     renderTexture(helpTexture, renderer, 48, 430 , 165, 75);
     SDL_RenderPresent(painter.getRenderer());
 
     SDL_Texture* startTexture = loadTexture("Texture/play_button.png",renderer);
     renderTexture(startTexture, renderer,716, 430, 160, 75);
-    SDL_RenderPresent(painter.getRenderer());
+    SDL_RenderPresent(painter.getRenderer());*/
  
     int choice=-1;
     SDL_Event e1;
@@ -84,19 +83,18 @@ homee:
         {
             filled_rect.x=e1.button.x;
             filled_rect.y=e1.button.y;
-            if(filled_rect.x >=48 && filled_rect.y>=430 && filled_rect.x<=213 && filled_rect.y<=505)
+            if(filled_rect.x >=41 && filled_rect.y>=400 && filled_rect.x<=171 && filled_rect.y<=500)
             {
                 choice=1;
                 break;
             }
-            if(filled_rect.x >=716 && filled_rect.y>=430 && filled_rect.x<=876 && filled_rect.y<=505)
+            if(filled_rect.x >=726 && filled_rect.y>=403 && filled_rect.x<=858 && filled_rect.y<=500)
             {
                 choice=2;
                 break;
             }
        }
     }
-    cout<<playGround.getHeight()<<endl;
     if(choice==1)
     {
     Mix_PlayChannel (-1, click, 0);
@@ -142,13 +140,6 @@ gamee:
      while (playGround.isGameRunning())
     {
         SDL_RenderCopy(renderer, newTexture, NULL, NULL);
-       /* int realScore=playGround.getScore();
-        if((realScore+1) %10==0 )
-          {
-              STEP_DELAY-=0.00001;
-
-             cout<<STEP_DELAY<<endl;*/
-        
         while (SDL_PollEvent(&e))
         {
             UserInput input = interpretEvent(e);
@@ -165,13 +156,14 @@ gamee:
             SDL_RenderPresent(painter.getRenderer());
             start = end;
         }
-         STEP_DELAY-=0.00001;
-         cout<<STEP_DELAY<<endl;
+        STEP_DELAY-=0.000001;
         SDL_Delay(1);
     }
-   // renderGameOver(painter, playGround, to_string(playGround.getScore()));
-   // TTF_Font* fontText = NULL;
-   //Text score;
+   renderGameOver(painter, playGround, to_string(playGround.getScore()));
+   /*playGround.initPlayGround();
+   snake.initSnake();
+   TTF_Font* fontText = NULL;
+   Text score;
   string lastScore = to_string(playGround.getScore());
     score.initText(fontText);
     score.setSize(35,50);
@@ -189,7 +181,7 @@ gamee:
         if ( SDL_WaitEvent(&e) != 0 &&
              (e.type == SDL_KEYDOWN || e.type == SDL_QUIT) )
                 break;
-    } */
+    } 
     SDL_Event e3;
     int choice=-1;
             while (true) {
@@ -208,12 +200,10 @@ gamee:
                 }
             } 
     if(choice==1)
-      goto gamee;
-     //delete gallery;
-    //quitSDL(window, renderer);
-    }
+      goto gamee;*/
     delete gallery;
     quitSDL(window, renderer);
+    }
     return 0;
 }
 
@@ -374,7 +364,10 @@ void renderGameOver(Painter& painter, const PlayGround& playGround, string lastS
                 }
             } 
     if(choice==1)
-    goto homee;*/
+    {
+        
+        goto homee;*/
+
 }
 
 UserInput interpretEvent(SDL_Event e)
@@ -392,4 +385,3 @@ UserInput interpretEvent(SDL_Event e)
     return NO_INPUT;
 }
 
- 
