@@ -19,7 +19,15 @@ Snake::~Snake()
 {
 
 }
-
+/*void Snake::initSnake()
+{
+    new SnakeNode (Position(playGround->getWidth() / 2, playGround->getHeight() / 2));
+    //Direction direction = RIGHT;
+    //cherry=0;
+{
+    changePlayGroundState(CELL_SNAKE);
+}
+}*/
 void Snake::processUserInput(UserInput input)
 {
     inputQueue.push(input);
