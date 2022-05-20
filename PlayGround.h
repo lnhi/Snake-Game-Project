@@ -24,6 +24,7 @@ public:
     PlayGround(int width, int height);
     ~PlayGround();
 
+   // void initPlayGround();
     bool isGameRunning() const { return status == GAME_RUNNING; }
     bool isGameStop() const { return status == GAME_STOP; }
     void processUserInput(UserInput input);
