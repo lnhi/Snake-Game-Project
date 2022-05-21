@@ -148,7 +148,8 @@ homee:
                 SDL_RenderPresent(painter.getRenderer());
                 start = end;
             }
-            STEP_DELAY -= 0.000001;
+            if(STEP_DELAY > 0.05)
+                STEP_DELAY -= 0.000001;
             SDL_Delay(1);
         }
         renderGameOver(painter, playGround, to_string(playGround.getScore()));
