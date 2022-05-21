@@ -15,13 +15,18 @@ Game rắn cổ điển được viết bằng ngôn ngữ C++, sử dụng thư
   mingw32-make && .\main.exe
   ```
 ## Mô tả chung
-  - Ý tưởng: làm lại game rắn săn mồi đồng thời thêm những yếu tố sáng tạo cho game có màu sắc riêng hơn.
-  - Snake Game: di chuyển rắn bằng tổ hợp phím mũi tên để rắn ăn quả mà không đâm vào tường, thân mình, chướng ngại vật.
+  - Snake Game: di chuyển rắn ăn quả để rắn không đâm vào tường hoặc chính nó.
+  - Ý tưởng: làm lại game rắn săn mồi đồng thời thêm những yếu tố sáng tạo cho game có màu sắc riêng hơn:
+    - Hình ảnh, âm thanh.
+    - Xử lý khúc cua của rắn.
+    - Menu.
+    - Ghi điểm.
+    - Thêm chướng ngại vật. 
+    - Rắn chạy nhanh dần.
 ## Chức năng
-  - Menu game: [link video demo](https://courses.uet.vnu.edu.vn/)
-  - Di chuyển ăn quả cộng điểm: [link video demo](https://courses.uet.vnu.edu.vn/)
-  - Rắn đâm vào tường: [link video demo](https://courses.uet.vnu.edu.vn/)
-  - Rắn đâm vào chướng ngại vật: [link video demo](https://courses.uet.vnu.edu.vn/)
+  - Menu, rắn di chuyển ăn quả ghi điểm: [link video](https://youtu.be/q0jruWb4gbg)
+  - Rắn đâm vào thân mình: [link video](https://youtu.be/4e1W5PPsaAw)
+  - Rắn đâm vào chướng ngại vật: [link video](https://youtu.be/G5vfonqVMos)
 ## Các kỹ thuật
   - Mảng: sử dụng mảng 1 chiều, mảng 2 chiều tĩnh và động.
   - Con trỏ.
