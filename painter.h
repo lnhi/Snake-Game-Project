@@ -1,8 +1,12 @@
 #pragma once
-
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
 #include <string>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <SDL_image.h>
+
+#include "SDL_utils.h"
 
 const SDL_Color CYAN_COLOR = {0, 255, 255};
 const SDL_Color BLUE_COLOR = {0, 0, 255};
@@ -25,9 +29,10 @@ class Painter
     int width;
     int height;
     SDL_Color color;
-    SDL_Renderer* renderer;
+    SDL_Renderer *renderer;
+
 public:
-    Painter(SDL_Window* window, SDL_Renderer* renderer);
+    Painter(SDL_Window *window, SDL_Renderer *renderer);
 
     void setPosition(float x, float y);
     float getX() const { return x; }
@@ -42,35 +47,9 @@ public:
     void setColor(SDL_Color color);
     SDL_Color getColor() const { return color; }
 
-    SDL_Renderer* getRenderer() const { return renderer; }
+    SDL_Renderer *getRenderer() const { return renderer; }
 
     void clearWithBgColor(SDL_Color color);
-
-    
-    void moveForward(float length);
-    void jumpForward(float length);
-    void moveBackward(float length)
-      {
-        moveForward(-length);
-      }
-    void jumpBackward(float length)
-      {
-        jumpForward(-length);
-      }
-    void turnLeft(float angle)
-      {
-        setAngle(this->angle+angle);
-      }
-    void turnRight(float angle)
-      {
-        turnLeft(-angle);
-      }
-
-    void setRandomColor();
-    void createCircle(float radius);
-    void createSquare(float size);
-    void createParallelogram(float size);
-
-    SDL_Texture* loadTexture( std::string path );
-    bool createImage( SDL_Texture* texture, SDL_Rect* srcrect = nullptr, SDL_Rect* dstrect = nullptr );
+    SDL_Texture *loadTexture(std::string path);
+    bool createImage(SDL_Texture *texture, SDL_Rect *srcrect = nullptr, SDL_Rect *dstrect = nullptr);
 };
