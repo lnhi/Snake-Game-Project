@@ -28,15 +28,15 @@ Game rắn cổ điển được viết bằng ngôn ngữ C++, sử dụng thư
   - Rắn đâm vào thân mình: [link video](https://youtu.be/4e1W5PPsaAw)
   - Rắn đâm vào chướng ngại vật: [link video](https://youtu.be/G5vfonqVMos)
 ## Các kỹ thuật
-  - Mảng: sử dụng mảng 1 chiều, mảng 2 chiều tĩnh và động.
+  - Mảng 1 chiều, mảng 2 chiều tĩnh và động.
   - Hàng đợi.
   - Bắt phím với SDL_PollEvent().
   - Con trỏ.
   - Lớp.
   - Danh sách liên kết.
   - Đồ hoạ:
-      - Âm thanh: sử dụng thư viện SDL_mixer.
-      - Hình ảnh: sử dụng thư viện SDL_image, SDL_ttf.
+      - Âm thanh: sử dụng thư viện SDL_mixer để đọc file âm thanh và phát âm thanh.
+      - Hình ảnh: sử dụng thư viện SDL_image để tải ảnh và SDL_ttf để tải chữ lên màn hình.
 ## Tổng kết
   - Game đã có đủ các chức năng chính của một game rắn cổ điển và có thêm những yếu tố mới. Tuy nhiên, vẫn còn một số điểm chưa phát triển hết mức có thể nên vẫn cần được hoàn thiện hơn trong tương lai.
   - Hướng phát triển: thêm các tính năng như :
