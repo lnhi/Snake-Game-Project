@@ -7,7 +7,7 @@ Game rắn cổ điển được viết bằng ngôn ngữ C++, sử dụng thư
 [Các kỹ thuật](#các-kỹ-thuật)  
 [Tổng kết](#tổng-kết)  
 ## Hướng dẫn cài đặt  
-  - Tải source code về máy.
+  - Tải source code về máy hoặc clone repo về bằng lệnh `git clone https://github.com/lnhi/Snake-Game-Project.git`
   - Mở folder code trong **_VSCode_**.  
   - Mở **terminal**.
   - Để **chạy game**, sử dụng câu lệnh sau: 
@@ -28,11 +28,11 @@ Game rắn cổ điển được viết bằng ngôn ngữ C++, sử dụng thư
   - Rắn đâm vào thân mình: [link video](https://youtu.be/4e1W5PPsaAw)
   - Rắn đâm vào chướng ngại vật: [link video](https://youtu.be/G5vfonqVMos)
 ## Các kỹ thuật
-  - Mảng 1 chiều, mảng 2 chiều tĩnh và động.
-  - Hàng đợi.
+  - Mảng 1 chiều, 2 chiều: chủ yếu sử dụng vector để lưu hình ảnh, vị trí của rắn, trạng thái các ô.
+  - Hàng đợi: lưu các sự kiện phím của người chơi.
   - Bắt phím với SDL_PollEvent().
   - Con trỏ.
-  - Lớp.
+  - Lớp
   - Danh sách liên kết.
   - Đồ hoạ:
       - Âm thanh: sử dụng thư viện SDL_mixer để đọc file âm thanh và phát âm thanh.
