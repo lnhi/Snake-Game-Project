@@ -29,7 +29,7 @@ Game rắn cổ điển được viết bằng ngôn ngữ C++, sử dụng thư
   - Rắn đâm vào chướng ngại vật: [link video](https://youtu.be/G5vfonqVMos)
 ## Các kỹ thuật
   - Mảng: sử dụng mảng 1 chiều, mảng 2 chiều tĩnh và động.
-  - Hàng đợi
+  - Hàng đợi.
   - Bắt phím với SDL_PollEvent().
   - Con trỏ.
   - Lớp.
